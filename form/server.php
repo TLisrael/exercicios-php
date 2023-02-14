@@ -13,10 +13,10 @@ $dbname = 'cadastro';
 $port = '3306';
 
 /*
- * 
- *  Tenta conexão com banco de dados, caso seja um sucesso, retorna que está funcionando
- *  Caso contrário, retorna o erro que foi encontrado.
- * 
+ *
+ * Tenta conexão com banco de dados, caso seja um sucesso, retorna que está funcionando
+ * Caso contrário, retorna o erro que foi encontrado.
+ *
  */
 try {
     $conn = new PDO("mysql:host=$host;dbname=" . $dbname, $user, $pass);
@@ -26,32 +26,25 @@ try {
 }
 
 
-/**
-
- * 
- * Puxa os dados de todos os inputs com o metodo POST, se os dados do formulário
- * não estiverem vazios, ele insere nome, email e assunto no banco de dados criado previamente
- * 
- */
 $dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-if (!empty($dadosForm['addMsgCont'])) {
+if (! empty($dadosForm['AdicionandoNoDB'])) {
     var_dump($dadosForm);
+    //Se os dados do formulario nao forem vazios, adiciona cada string em sua devida coluna 
+    $query = "INSERT INTO contatos (nome, email, assunto) VALUES (:nome, :email, :assunto)";
+    $contato = $conn->prepare($query);
+    $contato->bindParam(':nome', $dadosForm['nome']);
+    $contato->bindParam(':email', $dadosForm['email']);
+    $contato->bindParam(':assunto', $dadosForm['assunto']);
 
-    $query_contato = "INSERT INTO contatos (nome, email, assunto) VALUES (:nome, :email, :assunto)";
-    $add_contato = $conn->prepare($query_contato);
-    $add_contato->bindParam(':nome', $dadosForm['nome'], PDO::PARAM_STR);
-    $add_contato->bindParam(':email', $dadosForm['email'], PDO::PARAM_STR);
-    $add_contato->bindParam(':assunto', $dadosForm['assunto'], PDO::PARAM_STR);
-
-    $add_contato->execute();
+    $contato->execute();
 
     /*
-     * Checa se houve inserção e retorna mensagem de Suc
+     * Checa se houve inserção e retorna mensagem de Sucesso
      */
-    if ($add_contato->rowCount()) {
+    if ($contato->rowCount()) {
         echo "<p style='color:green;'>Mensagem enviada com sucesso!</p>";
     } else {
-        echo "<p style='color:#F00;'>Erro: Mensagem não enviada</p>";
+        echo "<p style='color:red;'>Erro</p>";
     }
 }
 

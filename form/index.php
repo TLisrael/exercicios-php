@@ -24,7 +24,7 @@ require_once 'server.php';
 			placeholder="Seu melhor E-mail" required><br> <br> <label>Assunto: </label>
 		<input type="text" id="assunto" name="assunto" placeholder="Assunto da Mensage"
 			required>
-		<br> <br> <input type="submit" name="addMsgCont" value="Enviar">
+		<br> <br> <input type="submit" name="AdicionandoNoDB" value="Enviar">
 		<br><br><input type="reset" name="reset" value="Resetar">
 	</form>
 
