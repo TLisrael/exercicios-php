@@ -1,8 +1,12 @@
 <?php
+require_once "vendor/autoload.php";
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__);
+$dotenv->load();
+
 // Iniciando conexão com banco de dados utilizando PDO
 $host = 'localhost';
-$user = 'root';
-$pass = '120317';
+$user = getenv('user');
+$pass = getenv('pass');
 $dbname = 'cadastro';
 $port = '3306';
 try {
