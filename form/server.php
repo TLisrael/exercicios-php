@@ -27,7 +27,7 @@ try {
 
 
 /**
- * 
+
  * 
  * Puxa os dados de todos os inputs com o metodo POST, se os dados do formulário
  * não estiverem vazios, ele insere nome, email e assunto no banco de dados criado previamente
@@ -38,9 +38,9 @@ if (!!empty($dadosForm['AddMsgCont'])) {
 
     $query_contato = "INSERT INTO contatos (nome, email, assunto) VALUES (:nome, :email, :assunto)";
     $add_contato = $conn->prepare($query_contato);
-    $add_contato->bindParam(':nome', $dadosForm['nome']);
-    $add_contato->bindParam(':email', $dadosForm['email']);
-    $add_contato->bindParam(':assunto', $dadosForm['assunto']);
+    $add_contato->bindParam(':nome', $dadosForm['nome'], PDO::PARAM_STR);
+    $add_contato->bindParam(':email', $dadosForm['email'], PDO::PARAM_STR);
+    $add_contato->bindParam(':assunto', $dadosForm['assunto'], PDO::PARAM_STR);
 
     $add_contato->execute();
 
