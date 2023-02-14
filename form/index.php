@@ -25,6 +25,7 @@ require_once 'server.php';
 		<input type="text" id="assunto" name="assunto" placeholder="Assunto da Mensage"
 			required>
 		<br> <br> <input type="submit" name="addMsgCont" value="Enviar">
+		<br><br><input type="reset" name="reset" value="Resetar">
 	</form>
 
 </body>
