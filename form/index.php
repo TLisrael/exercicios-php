@@ -1,6 +1,3 @@
-<?php 
-require_once 'server.php';
-?>
 <!DOCTYPE html>
 
 <html lang="pt-BR">
@@ -14,6 +11,9 @@ require_once 'server.php';
 </head>
 
 <body>
+<?php 
+require_once 'server.php';
+?>
 	<h2>Formulário de contato</h2>
 
 
@@ -23,9 +23,7 @@ require_once 'server.php';
 		<input type="text" name="email" id="email"
 			placeholder="Seu melhor E-mail" required><br> <br> <label>Assunto: </label>
 		<input type="text" id="assunto" name="assunto" placeholder="Assunto da Mensage"
-			required><br> <br> <label>Conteudo: </label>
-		<textarea name="conteudo" rows="3" cols="30"
-			placeholder="Conteúdo da Mensagem"></textarea>
+			required>
 		<br> <br> <input type="submit" name="addMsgCont" value="Enviar">
 	</form>
 

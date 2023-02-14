@@ -3,26 +3,38 @@ require_once "vendor/autoload.php";
 $dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__);
 $dotenv->load();
 
-// Iniciando conexão com banco de dados utilizando PDO
+/**
+ * Acesso ao banco de dados
+ */
 $host = 'localhost';
 $user = getenv('user');
 $pass = getenv('pass');
 $dbname = 'cadastro';
 $port = '3306';
+
+/*
+ * 
+ *  Tenta conexão com banco de dados, caso seja um sucesso, retorna que está funcionando
+ *  Caso contrário, retorna o erro que foi encontrado.
+ * 
+ */
 try {
-    // Conexão com a porta
-    // $conn = new PDO("mysql:host=$host;port=$port;dbname=" . $dbname, $user, $pass);
-    // Conexão sem porta
     $conn = new PDO("mysql:host=$host;dbname=" . $dbname, $user, $pass);
     echo "Funcionando!";
 } catch (PDOException $err) {
     echo $err->getMessage();
 }
 
-// $filterPadrao = FILTER_DEFAULT;
+
+/**
+ * 
+ * 
+ * Puxa os dados de todos os inputs com o metodo POST, se os dados do formulário
+ * não estiverem vazios, ele insere nome, email e assunto no banco de dados criado previamente
+ * 
+ */
 $dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 if (!!empty($dadosForm['AddMsgCont'])) {
-//     var_dump($dadosForm);
 
     $query_contato = "INSERT INTO contatos (nome, email, assunto) VALUES (:nome, :email, :assunto)";
     $add_contato = $conn->prepare($query_contato);
@@ -32,6 +44,9 @@ if (!!empty($dadosForm['AddMsgCont'])) {
 
     $add_contato->execute();
 
+    /*
+     * Checa se houve inserção e retorna mensagem de Suc
+     */
     if ($add_contato->rowCount()) {
         echo "<p style='color:green;'>Mensagem enviada com sucesso!</p>";
     } else {
