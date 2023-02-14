@@ -34,7 +34,8 @@ try {
  * 
  */
 $dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-if (!!empty($dadosForm['AddMsgCont'])) {
+if (!empty($dadosForm['addMsgCont'])) {
+    var_dump($dadosForm);
 
     $query_contato = "INSERT INTO contatos (nome, email, assunto) VALUES (:nome, :email, :assunto)";
     $add_contato = $conn->prepare($query_contato);
