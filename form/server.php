@@ -20,31 +20,42 @@ $port = '3306';
  */
 try {
     $conn = new PDO("mysql:host=$host;dbname=" . $dbname, $user, $pass);
-    echo "Funcionando!";
+    // echo "Funcionando!";
 } catch (PDOException $err) {
     echo $err->getMessage();
 }
 
-
 $dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 if (! empty($dadosForm['AdicionandoNoDB'])) {
-    var_dump($dadosForm);
-    //Se os dados do formulario nao forem vazios, adiciona cada string em sua devida coluna 
-    $query = "INSERT INTO contatos (nome, email, assunto) VALUES (:nome, :email, :assunto)";
-    $contato = $conn->prepare($query);
-    $contato->bindParam(':nome', $dadosForm['nome']);
-    $contato->bindParam(':email', $dadosForm['email']);
-    $contato->bindParam(':assunto', $dadosForm['assunto']);
+    // var_dump($dadosForm);
 
-    $contato->execute();
+    // Validação de campos
+    if (empty($dadosForm['nome'])) {
+        echo "<p style='color:red;'>Nome é um campo obrigatório</p>";
+        
+    }elseif (empty($dadosForm['email'])){
+        echo "<p style='color:red;'>Email é um campo obrigatório</p>";
+        
+        
+    }else {
 
-    /*
-     * Checa se houve inserção e retorna mensagem de Sucesso
-     */
-    if ($contato->rowCount()) {
-        echo "<p style='color:green;'>Mensagem enviada com sucesso!</p>";
-    } else {
-        echo "<p style='color:red;'>Erro</p>";
+        // Se os dados do formulario nao forem vazios, adiciona cada string em sua devida coluna
+        $query = "INSERT INTO contatos (nome, email, assunto) VALUES (:nome, :email, :assunto)";
+        $contato = $conn->prepare($query);
+        $contato->bindParam(':nome', $dadosForm['nome']);
+        $contato->bindParam(':email', $dadosForm['email']);
+        $contato->bindParam(':assunto', $dadosForm['assunto']);
+
+        $contato->execute();
+
+        /*
+         * Checa se houve inserção e retorna mensagem de Sucesso
+         */
+        if ($contato->rowCount()) {
+            echo "<p style='color:green;'>Mensagem enviada com sucesso!</p>";
+        } else {
+            echo "<p style='color:red;'>Erro</p>";
+        }
     }
 }
 
