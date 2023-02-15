@@ -25,20 +25,23 @@ try {
     echo $err->getMessage();
 }
 
+$filtroEmail = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 $dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-if (! empty($dadosForm['AdicionandoNoDB'])) {
+
+if (!empty($dadosForm['AdicionandoNoDB'])) {
     // var_dump($dadosForm);
 
     // Validação de campos
     if (empty($dadosForm['nome'])) {
         echo "<p style='color:red;'>Nome é um campo obrigatório</p>";
-        
-    }elseif (empty($dadosForm['email'])){
-        echo "<p style='color:red;'>Email é um campo obrigatório</p>";
-        
-        
-    }else {
 
+    } elseif (empty($dadosForm['email'])) {
+        echo "<p style='color:red;'>Email é um campo obrigatório</p>";
+
+    } elseif ($filtroEmail === false) {
+        echo '<p style="color:red">Email inválido</p>';
+
+    } else {
         // Se os dados do formulario nao forem vazios, adiciona cada string em sua devida coluna
         $query = "INSERT INTO contatos (nome, email, assunto) VALUES (:nome, :email, :assunto)";
         $contato = $conn->prepare($query);
@@ -58,5 +61,3 @@ if (! empty($dadosForm['AdicionandoNoDB'])) {
         }
     }
 }
-
-?>

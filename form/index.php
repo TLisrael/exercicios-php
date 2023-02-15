@@ -22,6 +22,7 @@
             <br>
             <br>
             <label>E-mail </label>
+
             <input type="text" name="email" id="email" placeholder="Seu melhor E-mail">
             <br>
             <br>
@@ -35,8 +36,8 @@
                 <input class="button" type="reset" name="reset" value="Resetar">
             </div>
             <?php
-				require_once 'server.php';
-			?>
+            require_once 'server.php';
+            ?>
         </form>
     </div>
 
