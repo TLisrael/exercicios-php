@@ -1,5 +1,13 @@
 <?php
 date_default_timezone_set('America/Sao_Paulo');
+
+/**
+ * Conta o tempo decorrido de uma data.
+ * 
+ * @param string $dataHoje
+ * @return string
+ * 
+ */
 function ContandoTempo(string $dataHoje)
 {
     $agora = strtotime(date('Y-m-d H:i:s'));
