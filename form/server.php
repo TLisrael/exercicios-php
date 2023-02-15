@@ -39,7 +39,8 @@ if (!empty($dadosForm['AdicionandoNoDB'])) {
         echo "<p style='color:red;'>Email é um campo obrigatório</p>";
 
     } elseif ($filtroEmail === false) {
-        echo '<p style="color:red">Email inválido</p>';
+        echo '<p style="color:red">Email inválido. Formulário não enviado.</p>';
+        die();
 
     } else {
         // Se os dados do formulario nao forem vazios, adiciona cada string em sua devida coluna
@@ -50,7 +51,7 @@ if (!empty($dadosForm['AdicionandoNoDB'])) {
         $contato->bindParam(':assunto', $dadosForm['assunto']);
 
         $contato->execute();
-
+        
         /*
          * Checa se houve inserção e retorna mensagem de Sucesso
          */
