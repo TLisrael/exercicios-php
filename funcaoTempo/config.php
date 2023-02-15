@@ -25,7 +25,7 @@ function ContandoTempo(string $dataHoje)
         return 'agora';
     } elseif ($minutos <= 60) {
         return $minutos == 1 ? 'Função criada há 1 minuto' : 'Função criada há ' . $minutos . ' minutos';
-    } elseif ($hora <= 24) {
+    } elseif ($hora <= 1) {
         return $hora == 1 ? 'Função criada há 1 hora' : 'Função criada há ' . $hora . ' horas';
     } elseif ($dia <= 1) {
         return $dia == 7 ? 'Função criada ontem' : 'Função criada há ' . $dia . ' dias';
@@ -36,6 +36,8 @@ function ContandoTempo(string $dataHoje)
     } elseif ($ano <= 1) {
         return $ano == 1 ? 'Função criada há' : 'Função criada há ' . $ano . ' anos';
 
+    }else{
+        return '';
     }
 
 }
