@@ -8,3 +8,7 @@ Repositorio criado para compartilhar meus exercicios e pequenos projetos em PHP
 <img src="https://cdn.discordapp.com/attachments/1072195479661707295/1075177451040276480/image.png">
 <img src="https://cdn.discordapp.com/attachments/1072195479661707295/1075177512172265483/image.png">
 <img src="https://cdn.discordapp.com/attachments/1072195479661707295/1075177786072903760/image.png">
+
+
+### Projeto 2 -> Texto simples com hora que foi editado pela ultima vez
+<img src="https://cdn.discordapp.com/attachments/1072195479661707295/1075745158420758608/image.png">
