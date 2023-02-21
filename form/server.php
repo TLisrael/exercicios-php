@@ -57,6 +57,7 @@ if (!empty($dadosForm['AdicionandoNoDB'])) {
          */
         if ($contato->rowCount()) {
             echo "<p style='color:green;'>Mensagem enviada com sucesso!</p>";
+
         } else {
             echo "<p style='color:red;'>Erro</p>";
         }

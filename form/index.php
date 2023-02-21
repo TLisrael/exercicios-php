@@ -24,6 +24,9 @@
             <label>E-mail </label>
 
             <input type="text" name="email" id="email" placeholder="Seu melhor E-mail">
+            <?php
+            
+            ?>
             <br>
             <br>
             <label>Assunto: </label>

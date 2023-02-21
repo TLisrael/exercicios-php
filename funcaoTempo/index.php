@@ -9,6 +9,7 @@
 
 <body>
     <div class="container-fluid">
+
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">Será que isso funciona?</h4>
             <p>Isso é um teste de função de contador de tempo!</p>
@@ -18,7 +19,6 @@
             echo ContandoTempo('2023-02-15 11:24') . '; <p class="mb-0">Se você estiver vendo essa mensagem, é pq funcionou!</p>';
             ?>
         </div>
-
     </div>
 </body>
 
